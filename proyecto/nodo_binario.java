@@ -1,4 +1,4 @@
-package com.mycompany.linearDataStructures;
+package proyecto;
 
 public class nodo_binario extends nodo{
         /*

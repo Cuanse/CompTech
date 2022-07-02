@@ -1,4 +1,4 @@
-package com.mycompany.linearDataStructures;
+package proyecto;
 
 /*
         ************** REVISION EL 27/05/2022 **********************

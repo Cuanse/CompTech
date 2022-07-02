@@ -1,18 +1,20 @@
-package com.mycompany.linearDataStructures;
-
-import com.mycompany.linearDataStructures.*;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package proyecto;
 
 public class Tree <T extends Comparable<T>> {
     nodo_binario root; // todavia no le doy uso, pero pronto.
     
-    public Tree(){// no usamos el constructor todavia, pero pronto
+    Tree(){// no usamos el constructor todavia, pero pronto
         
     }
     
     //---------------------------------------------------------------------------------------------------------    
     // ***************************** OJO ESTE ARBOL NO EST� BALANCEADO **************************************
     // para dar uso del balanceo toca usar el m�todo rotaci�n() para equilibrarlo cada vez que sucede un insert.
-    // Tambi�n se puede a�adir los datos y luego usar rotaci�n() para convertirlo en uno balanceado.
     //---------------------------------------------------------------------------------------------------------
     
     public nodo_binario insert(nodo_binario root, T data){ 
@@ -24,91 +26,63 @@ public class Tree <T extends Comparable<T>> {
                 root.left = insert(root.left,data); // le digo que revise el nodo_binario de la izquierda como si fuese tambien un �rbol hasta encontrar un nodo_binario nulo donde vaya el dato
                 
             }else{
+                System.out.println("mi"+root.dato);
                 root.right = insert(root.right,data);
             }
-        return root; // devuelvo la misma raiz para no afectar el �rbol y devolverme.
+            
+            root = rotacion(root);
+            return root; // devuelvo la misma raiz para no afectar el �rbol y devolverme.
         }
     }
     
-    public void pruebaComparable(nodo_binario root){
-        System.out.println("???????????????????????????????????????????????/");
-        nodo_binario copia = root;
-        while(copia!=null){
-            System.out.println(copia.left.dato);
-            copia = copia.left;
-        }
-        
-        
-    }
-    public nodo_binario menor(nodo_binario root, T data){
-    if(root == null){
-            return null;
-        }else{
-            nodo_binario buscado = root;
-            int dato_b; // guarda el resultado de compareTo();
-            while(buscado!=null){   //Se termina si llega al final del �rbol
-                dato_b = buscado.dato.compareTo(data);
-                //System.out.println(buscado.dato);
-                if(0==dato_b){
-                    if(buscado.right!=null){//por si es una hoja
-                        return buscado.left;
-                    }
-                    return buscado;
-                }else if(dato_b<0){
-                    buscado = buscado.right;
-                }else{
-                    buscado = buscado.left;
-                }
-            }
-            return null;
-        }
-        
-    }
-
-    public nodo_binario mayor(nodo_binario root, T data){
-    if(root == null){
-            return null;
-        }else{
-            nodo_binario buscado = root;
-            int dato_b; // guarda el resultado de compareTo();
-            while(buscado!=null){   //Se termina si llega al final del �rbol
-                dato_b = buscado.dato.compareTo(data);
-                //System.out.println(buscado.dato);
-                if(0==dato_b){
-                    if(buscado.right!=null){//por si es una hoja
-                        return buscado.right;
-                    }
-                    return buscado;
-                }else if(dato_b<0){
-                    buscado = buscado.right;
-                }else{
-                    buscado = buscado.left;
-                }
-            }
-            return null;
-        }
-        
-    }
     
     public boolean search(nodo_binario root, T data){
         if(root == null){
             return false;
         }else{
             nodo_binario buscado = root;
-            int dato_b; // guarda el resultado de compareTo();
-            while(buscado!=null){   //Se termina si llega al final del �rbol
-                dato_b = buscado.dato.compareTo(data);
+            int dato_b = 0; // guarda el resultado de compareTo();
+            while(root!=null){   //Se termina si llega al final del �rbol
+                dato_b = root.dato.compareTo(data);
                 //System.out.println(buscado.dato);
                 if(0==dato_b){
                     return true;
                 }else if(dato_b<0){
-                    buscado = buscado.right;
+                    root = root.right;
                 }else{
-                    buscado = buscado.left;
+                    root = root.left;
                 }
             }
             return false;
         }
+    }
+    
+    public Comparable menor(nodo_binario root){
+    if(root == null){
+            return null;
+        }else{
+            nodo_binario buscado = root;
+            while(buscado.left!=null){   //Se termina si llega al final del �rbol
+                buscado = buscado.left;
+            }
+            return buscado.dato;
+        }
+        
+    }
+
+    public Comparable mayor(nodo_binario root){
+    if(root == null){
+            return null;
+        }else{
+            nodo_binario buscado = root;
+            while(buscado.right!=null){
+                
+                System.out.println("busca"+buscado.dato);
+                buscado=buscado.right;
+            }
+            return buscado.dato;
+        }
+        
     }
     
     public int equilibrio(nodo_binario root){
@@ -189,9 +163,8 @@ public class Tree <T extends Comparable<T>> {
     
     // ******************* EL display() level-order NO TA FUNCIONANDO OJO ************************
     // MOTIVO: parece que nuestra pila noa cepta tipos nodo_binario y no puede "ser casteado" a Comparable
-/* 
-public void display(nodo_binario root){ // Imprimimos todo por orden de nivel
-    Cola queu = new Cola();
+    /*public void display(nodo_binario root){ // Imprimimos todo por orden de nivel
+        Cola queu = new Cola();
         if(root != null){
             queu.enqueue(root);
             nodo_binario tree ;
@@ -207,13 +180,12 @@ public void display(nodo_binario root){ // Imprimimos todo por orden de nivel
                 }
             }
         }
-    }
-*/    
+    }*/
     
     public void display2(nodo_binario root){    // imprimir en pre order
         
         if(root != null){   // por si envian un �robl null
-            System.out.println(root.dato);
+            System.out.print(root.dato);
             if(root.left != null){
                 display2(root.left);
             }
@@ -232,7 +204,7 @@ public void display(nodo_binario root){ // Imprimimos todo por orden de nivel
             if(root.right!=null){
                 display3(root.right);
             }            
-            System.out.println(root.dato);
+            System.out.print(root.dato);
         }
     }
     
@@ -241,7 +213,7 @@ public void display(nodo_binario root){ // Imprimimos todo por orden de nivel
             if(root.left!=null){
                 display4(root.left);
             }
-            System.out.println(root.dato);
+            System.out.print(root.dato);
             if(root.right!=null){
                 display4(root.right);
             }

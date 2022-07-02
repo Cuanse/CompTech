@@ -1,6 +1,6 @@
 
-package com.mycompany.linearDataStructures;
-import com.mycompany.linearDataStructures.ArrayList; // Este import me marca como que "no encuentra ArrayList" pero si lo quito da m�s errores lol.
+package proyecto;
+import proyecto.ArrayList; // Este import me marca como que "no encuentra ArrayList" pero si lo quito da m�s errores lol.
 
 public class Pilas{
     /*

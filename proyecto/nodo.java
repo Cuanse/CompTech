@@ -1,4 +1,4 @@
-package com.mycompany.linearDataStructures;
+package proyecto;
 
 public class nodo<T extends Comparable<T>> {
     /*

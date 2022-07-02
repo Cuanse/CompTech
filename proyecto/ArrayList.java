@@ -1,5 +1,5 @@
 
-package com.mycompany.linearDataStructures;
+package proyecto;
 public class ArrayList<T extends Comparable<T>>{
     
     /*
@@ -50,6 +50,7 @@ public class ArrayList<T extends Comparable<T>>{
                 return i;
             }
         }
+        
         return -1;
     }
 

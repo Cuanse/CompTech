@@ -1,4 +1,4 @@
-package com.mycompany.linearDataStructures;
+package proyecto;
 
 /*
         ************** REVISION EL 27/05/2022 **********************
@@ -113,7 +113,7 @@ public class linkedList {  //Es una LinkedList pero sin cola  y 1 solo enlace os
 
     }
 
-    public nodo popBack(nodo head) {
+    public nodo popBack() {
         nodo start = head;
         while (start.siguiente != null) {   //Al a�adirle 1 solo dato no realiza el pop
             start = start.siguiente;

@@ -1,4 +1,4 @@
-package com.mycompany.linearDataStructures;
+package proyecto;
 
 
 public class Cola<T extends Comparable<T>> {
